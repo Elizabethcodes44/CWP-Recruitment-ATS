@@ -6,4 +6,4 @@ print("Database connected successfully")
 
 cursor = connection.cursor()
 
-cursor.execute("CREATE TABLE IF NOT EXISTS")
+cursor.execute("CREATE TABLE IF NOT EXISTS ")
