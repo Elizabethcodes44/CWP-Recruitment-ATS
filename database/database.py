@@ -24,3 +24,16 @@ CREATE TABLE IF NOT EXISTS jobs (
 )""")
 
 connection.commit()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS applications (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    candidate_id INTEGER NOT NULL,
+    job_id INTEGER NOT NULL,
+    date_applied TEXT NOT NULL,
+    status TEXT NOT NULL,
+    notes TEXT,
+    FOREIGN KEY (candidate_id) REFERENCES candidates(id),
+    FOREIGN KEY (job_id) REFERENCES jobs(id)
+);
+""")
