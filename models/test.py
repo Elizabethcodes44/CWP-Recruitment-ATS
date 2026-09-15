@@ -1,5 +1,6 @@
 from candidate import Candidate
 from job import Job
+from application import Application
 candidate1 = Candidate(
     "Elizabeth Kujore",
     "elizabeth@example.com",
@@ -23,3 +24,15 @@ job1 = Job(
 print(job1)
 
 job1.validate_salary()
+
+
+
+application1 = Application(
+    1,
+    2,
+    "2026-09-15",
+    notes="Candidate has strong Python skills"
+)
+
+print(application1)
+print(application1.get_status())
