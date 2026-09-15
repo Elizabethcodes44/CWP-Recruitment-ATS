@@ -37,3 +37,17 @@ CREATE TABLE IF NOT EXISTS applications (
     FOREIGN KEY (job_id) REFERENCES jobs(id)
 );
 """)
+connection.commit
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS interviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    application_id INTEGER NOT NULL,
+    interview_date TEXT NOT NULL,
+    interview_type TEXT NOT NULL,
+    interviewer TEXT NOT NULL,
+    notes TEXT,
+    FOREIGN KEY (application_id) REFERENCES applications(id)
+);""")
+
+connection.commit()
