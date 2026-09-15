@@ -1,6 +1,8 @@
 from candidate import Candidate
 from job import Job
 from application import Application
+from interview import Interview
+
 candidate1 = Candidate(
     "Elizabeth Kujore",
     "elizabeth@example.com",
@@ -36,3 +38,17 @@ application1 = Application(
 
 print(application1)
 print(application1.get_status())
+
+
+
+
+interview1 = Interview(
+    10,
+    "2026-09-20",
+    "Online",
+    "Faith",
+    "Candidate should prepare for technical questions"
+)
+
+print(interview1)
+print(interview1.get_interview_type())
