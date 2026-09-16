@@ -30,3 +30,4 @@ class Job:
 
     def __str__(self):
         return f"{self.title} | {self.department} | {self.location} | {self.status}"
+    
