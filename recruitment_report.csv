@@ -1,0 +1,19 @@
+CANDIDATES
+ID,Name,Email,Phone,Location,Skills,Experience Years
+1,Elizabeth Test,elizabethtest@example.com,05551234567,Sivas,"Python, React, SQL",2
+2,Elizabeth Test 2,elizabethtest2@example.com,05551234567,Sivas,"Python, React, mySQL",2
+3,Elizabeth Test 3,elizabethtest3@example.com,05551234567,Sivas,"Python, React, mySQL",2
+4,Elizabeth Test 4,elizabethtest4@example.com,05551234567,Sivas,"Python, React, mySQL",2
+5,ADEDAPO,dapo@gmail.com,5432345,ankara,Lecturing,5
+
+JOBS
+ID,Title,Department,Location,Minimum Salary,Maximum Salary,Status,Created At
+1,Python Developer,Engineering,Lagos,300000.0,500000.0,Open,2026-09-16
+2,Python Developer,Engineering,Lagos,300000.0,500000.0,Open,2026-09-16
+3,Python Developer,Engineering,Lagos,300000.0,500000.0,Open,2026-09-16
+4,Lecturing,Foreig languages,Istanbul,34000.0,50000.0,Open,2026-09-16
+
+APPLICATIONS
+ID,Candidate ID,Job ID,Date Applied,Status,Notes
+1,1,1,2026-09-16,Offer,Candidate submitted application
+2,5,1,2026-09-16,Applied,He has the requıred skılls

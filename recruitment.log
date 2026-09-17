@@ -1,0 +1,10 @@
+2026-09-17 05:54:48,301 - INFO - External job search started: react
+2026-09-17 05:54:50,251 - INFO - External job search completed: 6 jobs found for 'react'
+2026-09-17 05:56:36,271 - INFO - Recruitment report exported: recruitment_report.csv
+2026-09-17 06:03:04,630 - INFO - External job search started: keyword='', title='assistant', location='lagos'
+2026-09-17 06:03:06,447 - INFO - External job search completed: 0 jobs found
+2026-09-17 06:11:04,435 - INFO - External job search started: keyword='excel', title='assistant', location='canada'
+2026-09-17 06:11:05,994 - INFO - External job search completed: 0 jobs found
+2026-09-17 06:12:04,329 - INFO - External job search started: keyword='python', title='developer', location='canada'
+2026-09-17 06:12:05,776 - INFO - External job search completed: 2 jobs found
+2026-09-17 06:13:47,049 - INFO - Recruitment report exported: recruitment_report.csv
