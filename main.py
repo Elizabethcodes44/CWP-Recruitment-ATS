@@ -7,6 +7,10 @@ from services.candidate_service import CandidateService
 from services.job_service import JobService
 from services.application_service import ApplicationService
 from services.interview_service import InterviewService
+from services.api_service import APIService
+from services.analytics_service import AnalyticsService
+from services.report_service import ReportService
+from utils.logger import logger
 
 from database.database import create_tables
 
@@ -16,6 +20,9 @@ candidate_service = CandidateService()
 job_service = JobService()
 application_service = ApplicationService()
 interview_service = InterviewService()
+api_service = APIService()
+analytics_service = AnalyticsService()
+report_service = ReportService()
 
 def add_candidate():
     print("\n--- ADD CANDIDATE ---")
@@ -307,6 +314,121 @@ def change_job_status():
     except ValueError as error:
         print("Error:", error)
 
+def fetch_api_jobs():
+    print("\n--- EXTERNAL JOB SEARCH ---")
+
+    keyword = input(
+        "Enter keyword (optional, e.g. python): "
+    ).strip()
+
+    title = input(
+        "Enter job title (optional, e.g. developer): "
+    ).strip()
+
+    location = input(
+        "Enter location (optional, e.g. Canada): "
+    ).strip()
+
+    logger.info(
+        f"External job search started: "
+        f"keyword='{keyword}', title='{title}', location='{location}'"
+    )
+
+    jobs = api_service.fetch_remote_jobs(
+        keyword=keyword,
+        title=title,
+        location=location
+    )
+
+    logger.info(
+        f"External job search completed: "
+        f"{len(jobs)} jobs found"
+    )
+
+    if not jobs:
+        print("\nNo remote jobs found.")
+        return
+
+    print(f"\nFound {len(jobs)} jobs:\n")
+
+    for job in jobs[:10]:
+        print("Title:", job.get("title"))
+        print("Company:", job.get("company_name"))
+        print("Location:", job.get("candidate_required_location"))
+        print("URL:", job.get("url"))
+        print("-" * 50)
+
+def view_analytics():
+    print("\n--- RECRUITMENT ANALYTICS ---")
+
+    analytics = analytics_service.get_analytics()
+
+    print(
+        f"\nTotal Candidates: "
+        f"{analytics['total_candidates']}"
+    )
+
+    print(
+        f"Total Jobs: "
+        f"{analytics['total_jobs']}"
+    )
+
+    print(
+        f"Open Jobs: "
+        f"{analytics['open_jobs']}"
+    )
+
+    print(
+        f"Closed Jobs: "
+        f"{analytics['closed_jobs']}"
+    )
+
+    print(
+        f"Total Applications: "
+        f"{analytics['total_applications']}"
+    )
+
+    print("\nApplications by Status:")
+
+    applications_by_status = analytics[
+        "applications_by_status"
+    ]
+
+    if not applications_by_status:
+        print("No applications found.")
+    else:
+        for status, count in applications_by_status.items():
+            print(f"- {status}: {count}")
+
+def export_report():
+    print("\n--- EXPORT RECRUITMENT REPORT ---")
+
+    filename = input(
+        "Enter filename (press Enter for default): "
+    ).strip()
+
+    if not filename:
+        filename = "recruitment_report.csv"
+
+    if not filename.endswith(".csv"):
+        filename += ".csv"
+
+    try:
+        report_file = report_service.export_recruitment_report(
+            filename
+        )
+
+        logger.info(
+          f"Recruitment report exported: {report_file}"
+        )
+
+        print(
+            f"\nReport exported successfully: {report_file}"
+        )
+
+    except OSError as error:
+        print("Error exporting report:", error)
+
 def main():
     create_tables()
 
@@ -326,7 +448,7 @@ def main():
         print("9. Change Job Status")
         print("10. View Analytics")
         print("11. Export Report")
-        print("12. Fetch API Data")
+        print("12. Search External Jobs")
         print("13. Exit")
 
         choice = input("\nChoose an option: ").strip()
@@ -359,13 +481,13 @@ def main():
             change_job_status()
 
         elif choice == "10":
-            print("Analytics will be integrated here.")
+            view_analytics()
 
         elif choice == "11":
-            print("Report export will be integrated here.")
+            export_report()
 
         elif choice == "12":
-            print("API integration will be added here.")
+            fetch_api_jobs()
 
         elif choice == "13":
             print("\nThank you for using Recruitment ATS.")
